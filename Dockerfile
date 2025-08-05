@@ -6,4 +6,4 @@ EXPOSE 11434
 RUN ollama pull mistral || true
 
 # Start the Ollama server and keep the container running
-CMD ["ollama", "serve"]
+CMD ["serve"]
