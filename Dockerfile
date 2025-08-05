@@ -1,11 +1,14 @@
 FROM ollama/ollama:latest
 
-# Copy your entrypoint script into the container
+# Install curl (required for health check)
+RUN apt-get update && apt-get install -y curl
+
+# Copy the entrypoint script into the container
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-# Expose Ollama API port
+# Expose Ollama default port
 EXPOSE 11434
 
-# Override the default entrypoint
+# Run the entrypoint script
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]

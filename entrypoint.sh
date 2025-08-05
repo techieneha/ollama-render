@@ -1,16 +1,17 @@
 #!/bin/bash
 
-# Start the Ollama server in the background
+# Start Ollama server in background
 ollama serve &
 
-# Wait for the server to start accepting connections
-echo "Waiting for Ollama server..."
+# Wait until server is available
+echo "Waiting for Ollama to start..."
 until curl -s http://localhost:11434 > /dev/null; do
-    sleep 2
+  sleep 1
 done
 
-# Pull the mistral model
+# Pull Mistral model
+echo "Pulling Mistral model..."
 ollama pull mistral
 
-# Keep the container running
+# Keep container running
 tail -f /dev/null
