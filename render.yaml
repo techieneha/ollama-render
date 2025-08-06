@@ -2,12 +2,12 @@ services:
   - type: web
     name: ollama-api
     runtime: docker
-    plan: starter
     region: oregon
+    plan: starter
     dockerfilePath: ./Dockerfile
     envVars:
       - key: OLLAMA_MODELS
-        value: mistral  # Or whatever model you're using
+        value: mistral
       - key: PORT
         value: 11434
     autoDeploy: true

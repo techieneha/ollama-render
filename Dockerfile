@@ -1,14 +1,10 @@
 FROM ollama/ollama:latest
 
-# Install curl (required for health check)
-RUN apt-get update && apt-get install -y curl
+# Pull mistral model during build to avoid latency during startup
+RUN ollama pull mistral
 
-# Copy the entrypoint script into the container
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-# Expose Ollama default port
+# Expose the Ollama API port
 EXPOSE 11434
 
-# Run the entrypoint script
-ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+# Start the Ollama server
+CMD ["serve"]
