@@ -1,10 +1,10 @@
 FROM ollama/ollama:latest
 
-# Pull mistral model during build to avoid latency during startup
-RUN ollama pull mistral
+# Optional: install curl for health checks
+RUN apt-get update && apt-get install -y curl
 
-# Expose the Ollama API port
+# Expose Ollama default API port
 EXPOSE 11434
 
-# Start the Ollama server
+# Start Ollama server when the container runs
 CMD ["serve"]
